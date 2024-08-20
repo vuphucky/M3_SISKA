@@ -1,6 +1,7 @@
 create database homework_KA;
 use homework_KA;
 
+
 create table address(
 idAD int primary key,
 address varchar(50)
@@ -30,7 +31,7 @@ nameCOU varchar(50),
 description varchar(50)
 );
 
-create table point(
+create table points(
 idP int primary key,
 point double,
 idCOU int,
@@ -89,7 +90,7 @@ values (1,"nguyen joanh long", 24, "0923495864",1,1),
               (19,"Lulu","full time"),
               (20,"Blitz","part time");
         
-       insert into point
+       insert into points
        -- idP,point,idCOU,idS
        values (1,8.5,2,9),
               (2,7,1,8),
@@ -133,5 +134,25 @@ from address ad
 join students s on ad.idAD = s.idAD
 group by ad.address;
 
-	
+select co.nameCOU, avg(p.point) as "diem trung binh"
+from course co
+join points p on co.idCOU = p.idCOU
+group by co.nameCOU;
+
+select co.nameCOU, avg(p.point) as "diem trung binh"
+from course co
+join points p on co.idCOU = p.idCOU
+group by co.nameCOU
+order by avg(p.point) desc
+limit 1;
+
+select max(points.point) as "diem cao nhat"
+from points;
+
+select min(points.point) as "diem thap nhat"
+from points;
+
+select students.*, ucase(fullname) as "chuyen thanh chu hoa"
+from students;
+
        
